@@ -1,147 +1,232 @@
 import type { Project } from '../types/portfolio'
-import payflowPreview from '../assets/images/payflow-case-study.png'
+import ampSmartPosPreview from '../assets/images/amp-smart-pos-case-study.jpg'
+import bedtimeStoryAppHomePreview from '../assets/images/bedtime-story-app-home.png'
+import gym2GoPreview from '../assets/images/gym2go-case-study.png'
+import almezanLawPreview from '../assets/images/almezan-law-case-study.png'
+import ruralBankLoanManagementPreview from '../assets/images/rural-bank-loan-management-case-study.png'
+import stcSupplierPortalPreview from '../assets/images/stc-supplier-portal-case-study.png'
 export const projects: Project[] = [
   {
-    id: 'payflow',
-    title: 'PayFlow — Payment Platform',
-    type: 'FinTech · POS',
-    category: 'Product',
-    year: '2025',
+    id: 'aiagent',
+    title: 'AI Bedtime Story App',
+    type: 'AI · Story Generation',
+    category: 'AI',
+    year: '2026–Present',
     description:
-      'Production payment platform handling card-present and card-not-present transactions across multiple providers.',
-    stack: ['React', 'TypeScript', 'Java', 'Laravel', 'PostgreSQL', 'Docker'],
-    role: 'Lead Full-Stack Developer',
+      'An in-progress mobile-first bedtime-story app for discovering, generating, and reading personalized AI stories.',
+    stack: ['React', 'Vite', 'TypeScript', 'Tailwind CSS', 'Express', 'PostgreSQL', 'OpenAI API'],
+    role: 'Personal Project · Full-Stack Developer',
     challenge:
-      'Unified multiple incompatible payment processor protocols behind a single merchant-facing API',
-    color: '#4b8ef0',
+      'Create a safe, engaging story-generation flow that stays usable through validation, generation, saving, and reading-progress states.',
+    color: '#f59e0b',
     caseStudy: {
-      headerPhoto: payflowPreview,
-      tag: 'FINTECH',
+      headerPhoto: bedtimeStoryAppHomePreview,
+      headerGradient: 'linear-gradient(135deg, #083b62 0%, #0d1b2e 45%, #0b5a82 100%)',
+      sourceUrl: 'https://github.com/njbestil/bedtime-story-app',
+      tag: 'AI · PERSONAL PROJECT',
       overview:
-        'A production payment processing platform handling card-present and card-not-present transactions across multiple payment providers and terminal types.',
+        'An in-progress personal project that reimagines bedtime storytelling as a mobile-first pirate-themed experience. Users can discover saved stories, describe a new story, generate it with AI, and read it in a paginated story reader.',
       problem:
-        'The client needed one unified payment gateway that could communicate with REST and TCP socket processor APIs while maintaining a consistent merchant-facing interface.',
+        'Creating personalized stories should feel simple and enjoyable, but AI generation also needs thoughtful validation, safe failure handling, and a reading experience that does not lose a user’s place.',
       myRole:
-        'Designed the payment orchestration layer, implemented processor connections, built the React TypeScript terminal UI, and containerized the full stack.',
+        'Designed the product architecture and UI flow, built the React and Vite frontend foundation, and am developing the server-side OpenAI, Express, and PostgreSQL layers.',
       architectureSteps: [
-        'React Terminal UI',
-        'Laravel API Gateway',
-        'Java Transaction Engine',
-        'Processor Adapters',
-        'PostgreSQL',
-        'Docker',
+        'React & Vite UI',
+        'Story Generator',
+        'Express API (In Progress)',
+        'OpenAI Responses API (In Progress)',
+        'Output Validation',
+        'PostgreSQL (In Progress)',
       ],
       solution:
-        'Built provider-agnostic Java adapters behind a common interface while Laravel handled routing, retries, and stable merchant-facing responses.',
+        'Structured the product around loading, story library, story generator, and story reader flows, with explicit loading, empty, validation, failure, retry, and disabled states. The in-progress backend keeps prompts, API credentials, provider responses, and output validation out of the browser.',
       result:
-        'Reduced new-provider integration time from six weeks to under two and supported peak loads of 1,200 transactions per minute.',
+        'Established the user experience and technical foundation for an AI-powered story product, with backend generation and persistence in active development.',
+    },
+  },
+  {
+    id: 'payflow',
+    title: 'AMP Smart POS & Payment Integrations',
+    type: 'FinTech · POS Payments',
+    category: 'Product',
+    year: '2024–2026',
+    description:
+      'Developed Android payment features and processor integrations for AMP in-person and self-service unattended payment solutions.',
+    stack: ['Java', 'Android', 'SQLite', 'REST APIs', 'TCP Socket APIs', 'GPAY', 'TSYS', 'FDRC'],
+    role: 'POS Developer',
+    challenge:
+      'Maintained dependable card acceptance and transaction recovery across attended and unattended Android terminal flows.',
+    color: '#4b8ef0',
+    caseStudy: {
+      headerPhoto: ampSmartPosPreview,
+      headerGradient: 'linear-gradient(135deg, #08263f 0%, #0d1b2e 45%, #102e46 100%)',
+      tag: 'FINTECH · SMART POS',
+      overview:
+        'Contributed to Advanced Mobile Payment’s in-person and self-service unattended payment ecosystem, working on terminal application features and payment-processor integrations for Android payment devices.',
+      problem:
+        'Production POS systems can encounter inconsistent card acceptance, incomplete transaction flows, receipt-printing issues, and differences in device behavior or processor responses—all of which can disrupt checkout.',
+      myRole:
+        'Built Java and Android transaction flows and UI features; integrated GPAY, TSYS, and FDRC through REST and TCP socket APIs; implemented receipt printing, settlement, refund, reversal, and unattended payment behavior.',
+      architectureSteps: [
+        'Android POS App',
+        'Payment Workflow',
+        'REST/TCP Adapter',
+        'GPAY · TSYS · FDRC',
+        'Device Services',
+        'SQLite',
+      ],
+      solution:
+        'Implemented processor-specific communication and transaction-state handling while keeping merchant-facing POS workflows consistent across AMP 6500, AMP 8200, Sunmi P2, and Sunmi P3 terminals.',
+      result:
+        'Completed GPAY production deployment and certification and release work for GPAY, TSYS, and FDRC in 2026. Post-production fixes improved payment-flow stability, receipt handling, and card-acceptance reliability across supported attended and unattended terminals.',
     },
   },
   {
     id: 'ecommerce',
-    title: 'E-Commerce + CMS Platform',
-    type: 'E-Commerce · CMS',
-    category: 'Web',
-    year: '2024',
-    description:
-      'Multi-tenant React and Laravel platform with a plugin-based CMS engine and integrated Stripe checkout.',
-    stack: ['React', 'Laravel', 'PHP', 'PostgreSQL', 'Stripe'],
-    role: 'Full-Stack Developer',
-    challenge:
-      'Built a content-block system flexible enough to serve eight client structures without touching code per client',
-    color: '#2dd4f7',
-    caseStudy: {
-      headerGradient: 'linear-gradient(135deg, #0d2a3a 0%, #0d1b2e 45%, #102030 100%)',
-      tag: 'E-COMMERCE',
-      overview:
-        'A multi-tenant React and Laravel platform combining a storefront with a self-service CMS for products, pages, and promotions.',
-      problem:
-        'Client teams needed to own storefront content without recurring developer support, while rigid off-the-shelf systems could not fit their different content structures.',
-      myRole:
-        'Designed the React SPA, Laravel API, plugin-based CMS engine, payment integration, and cloud asset workflow.',
-      architectureSteps: [
-        'React SPA',
-        'Laravel REST API',
-        'CMS Block Engine',
-        'PostgreSQL',
-        'Stripe',
-        'AWS S3',
-      ],
-      solution:
-        'Implemented reusable content blocks, each pairing a React renderer with a Laravel model and admin form so new blocks could be added independently.',
-      result:
-        'Reduced routine content updates from more than two hours to under ten minutes across eight client businesses.',
-    },
-  },
-  {
-    id: 'aiagent',
-    title: 'AI Agent Application',
-    type: 'AI · Automation',
-    category: 'AI',
+    title: 'Loan Management & Risk Analytics System',
+    type: 'FinTech · Risk Analytics',
+    category: 'Product',
     year: '2025',
     description:
-      'Prompt-driven workflow builder for validated, structured multi-step AI pipelines.',
-    stack: ['React', 'Node.js', 'OpenAI API', 'PostgreSQL', 'Docker'],
-    role: 'Full-Stack Developer',
+      'A full-stack loan management system that streamlines applications, risk evaluation, approval workflows, and probability-based lending insights.',
+    stack: ['React', 'Vite', 'Flowbite UI', 'Recharts', 'Laravel', 'MySQL', 'REST APIs', 'Probability & Statistics'],
+    role: 'Freelance Full-Stack Developer',
     challenge:
-      'Enforced structured output contracts across chained AI calls using schema validation and auto-retry',
-    color: '#f59e0b',
+      'Turn applicant, financial, and historical lending data into clear risk signals and decision-ready workflows.',
+    color: '#22c55e',
     caseStudy: {
-      headerGradient: 'linear-gradient(135deg, #2a1a00 0%, #0d1b2e 45%, #1a1200 100%)',
-      tag: 'AI · AUTOMATION',
+      headerPhoto: ruralBankLoanManagementPreview,
+      headerGradient: 'linear-gradient(135deg, #061b3f 0%, #0d1b2e 45%, #102a58 100%)',
+      tag: 'FINTECH · ANALYTICS',
       overview:
-        'A prompt-driven workflow builder for repeatable research, summarisation, classification, and extraction tasks.',
+        'Developed for Rural Bank of Hindang, this full-stack loan management system streamlined application processing, applicant-risk evaluation, loan approval workflows, and probability-based lending analytics.',
       problem:
-        'Business users had no reliable way to save, chain, validate, or audit recurring AI workflows.',
+        'Lending teams need to process applications efficiently while assessing repayment capacity and default risk. Disconnected records and manual analysis make it harder to apply consistent approval decisions and understand portfolio performance.',
       myRole:
-        'Designed the orchestration architecture, React workflow builder, Node.js API, structured-output validation, and Docker environment.',
+        'Designed and developed the React and Vite frontend, Laravel REST API, MySQL data layer, risk-evaluation workflows, dashboard visualizations, and reporting features.',
       architectureSteps: [
-        'React Builder',
-        'Node.js API',
-        'OpenAI Orchestrator',
-        'Schema Validator',
-        'PostgreSQL',
-        'Docker',
+        'React & Vite UI',
+        'Flowbite UI & Recharts',
+        'Laravel REST API',
+        'Risk Evaluation',
+        'Statistical Analysis',
+        'MySQL',
       ],
       solution:
-        'Enforced JSON Schema contracts between agent steps, with automatic retry and clarification when a response failed validation.',
+        'Created modules for applicant management, loan processing, application-status tracking, approval and rejection decisions, risk scoring, repayment-probability analysis, and reporting. Charts and statistical insights make portfolio and lending trends easier to understand.',
       result:
-        'Achieved 94% structured-output consistency and reduced workflow setup from hours to under five minutes.',
+        'Delivered a centralized system that supports more efficient loan processing, consistent risk evaluation, and data-informed lending decisions.',
     },
   },
   {
     id: 'oracle',
-    title: 'Oracle Integration Platform',
-    type: 'Enterprise · SaaS',
+    title: 'Oracle Cloud Integration & Extensions Platform',
+    type: 'Oracle Cloud · Enterprise Integration',
     category: 'Product',
-    year: '2023',
+    year: '2019–2023',
     description:
-      'Enterprise middleware connecting Oracle ERP modules through a unified Angular dashboard and REST-driven near real-time pipelines.',
-    stack: ['Angular', 'TypeScript', 'Oracle IC', 'Java', 'REST API'],
-    role: 'Integration Developer',
+      'Delivered full-stack Oracle Cloud extensions and enterprise integrations across HCM, ERP, SCM, and CX.',
+    stack: ['Angular', 'Oracle JET', 'Java', 'REST APIs', 'SOAP APIs', 'Oracle Integration Cloud', 'FBDI'],
+    role: 'Oracle Cloud Technical Consultant',
     challenge:
-      'Normalised incompatible schemas across Oracle ERP modules into one canonical data model',
+      'Connected Oracle Cloud and external business systems while supporting client-specific interfaces, validations, approvals, and data exchanges.',
     color: '#a78bfa',
     caseStudy: {
-      headerGradient: 'linear-gradient(135deg, #1a0d3a 0%, #0d1b2e 45%, #130d2e 100%)',
-      tag: 'ENTERPRISE',
+      headerPhoto: stcSupplierPortalPreview,
+      headerGradient: 'linear-gradient(135deg, #32005d 0%, #0d1b2e 50%, #250043 100%)',
+      tag: 'ORACLE CLOUD · ENTERPRISE',
       overview:
-        'Enterprise middleware connecting finance, inventory, and HR modules through an Angular dashboard and REST-driven pipelines.',
+        'At AppsPro, delivered full-stack applications and Oracle Cloud integrations across enterprise business domains, combining custom web interfaces, Java services, API integrations, Oracle Integration Cloud workflows, and automated data processes.',
       problem:
-        'Siloed ERP modules required manual exports and multi-day spreadsheet reconciliation for cross-system reporting.',
+        'Enterprise clients needed tailored workflows beyond standard Oracle SaaS configuration while keeping data aligned between Oracle Cloud, external systems, and end-user portals.',
       myRole:
-        'Designed the Oracle Integration Cloud workflows, Angular dashboard, REST transformation layer, and canonical reporting schema.',
+        'Built interfaces with Angular and Oracle JET; developed Java REST services; implemented REST and SOAP integrations; and configured Oracle Integration Cloud workflows for real-time validation, FBDI transfers, scheduled synchronization, approvals, notifications, and status tracking.',
       architectureSteps: [
-        'Angular Dashboard',
-        'REST API',
+        'Angular & Oracle JET',
+        'Java REST Services',
         'Oracle Integration Cloud',
-        'ERP Connectors',
-        'PostgreSQL',
+        'Oracle HCM · ERP · SCM · CX',
+        'REST · SOAP · FBDI',
+        'Approvals & Notifications',
       ],
       solution:
-        'Normalized module payloads into a canonical schema and used queue-backed synchronization to respect payload and rate constraints.',
+        'Delivered reusable, API-driven integration patterns and full-stack extensions that transformed and routed data while supporting client-specific business processes. A highlighted example is the STC Supplier Registration Portal, built from scratch to support SCM supplier onboarding with real-time validation, approval automation, notifications, data synchronization, and end-to-end status tracking.',
       result:
-        'Reduced four-hour batch cycles to near real-time synchronization and shortened finance reporting from three days to same-day.',
+        'Enabled connected, maintainable enterprise workflows across multiple Oracle Cloud projects, reducing manual handoffs and improving business-process status visibility.',
+    },
+  },
+  {
+    id: 'gym2go',
+    title: 'Instructor & Tutor Booking Platforms',
+    type: 'Health & Education · Marketplace',
+    category: 'Web',
+    year: '2018–2019',
+    description:
+      'Cross-platform marketplaces for Gym2Go fitness instructors and TUTHIVE tutors, with provider profiles, booking, messaging, and Stripe payments.',
+    stack: ['Laravel', 'REST APIs', 'React', 'Mobile App', 'Booking System', 'Messaging', 'Stripe'],
+    role: 'Full-Stack Developer',
+    challenge:
+      'Coordinate provider discovery, profile management, bookings, payments, and direct client communication across fitness and tutoring services.',
+    color: '#f472b6',
+    caseStudy: {
+      headerPhoto: gym2GoPreview,
+      headerGradient: 'linear-gradient(135deg, #3b0a28 0%, #0d1b2e 45%, #311429 100%)',
+      tag: 'BOOKING · SERVICE MARKETPLACES',
+      overview:
+        'Built cross-platform booking solutions for Gym2Go and TUTHIVE. Gym2Go connected certified fitness instructors with students seeking home or gym training, while TUTHIVE connected learners with tutors for booked sessions.',
+      problem:
+        'Clients need an easy way to find suitable service providers and book sessions, while instructors and tutors need a professional space to present their skills, manage profiles, receive bookings, and communicate with clients.',
+      myRole:
+        'Developed the Laravel REST APIs, React web interface, and mobile-app experience for Gym2Go and TUTHIVE; implemented provider registration, detailed profiles, session booking, messaging, Stripe payments, and tailored service-selection flows for fitness training and tutoring.',
+      architectureSteps: [
+        'React Web App',
+        'Mobile Interface',
+        'Laravel REST APIs',
+        'Provider Profiles',
+        'Booking & Messaging',
+        'Database',
+      ],
+      solution:
+        'Created marketplace workflows where providers manage profiles while clients browse suitable instructors or tutors, evaluate skills, book and pay through Stripe, and communicate directly. Gym2Go supports home or gym training selection, while TUTHIVE supports tutor-session booking.',
+      result:
+        'Delivered reusable cross-platform marketplace foundations for fitness-instructor discovery, tutor discovery, personalized session bookings, and direct client–provider coordination.',
+    },
+  },
+  {
+    id: 'almezan',
+    title: 'AlMezan — Legal Consultation Marketplace',
+    type: 'LegalTech · Case Bidding Platform',
+    category: 'Product',
+    year: '2019',
+    description:
+      'A legal-services platform where clients post cases, lawyers bid or decline, and selected lawyers are notified to schedule consultations.',
+    stack: ['Laravel', 'REST APIs', 'React', 'Mobile App', 'Booking System', 'Messaging'],
+    role: 'Full-Stack Developer',
+    challenge:
+      'Turn legal consultation intake into a transparent workflow that lets clients compare lawyer responses and select the right counsel.',
+    color: '#60a5fa',
+    caseStudy: {
+      headerPhoto: almezanLawPreview,
+      headerGradient: 'linear-gradient(135deg, #071f3b 0%, #0d1b2e 45%, #102f55 100%)',
+      tag: 'LEGALTECH · MARKETPLACE',
+      overview:
+        'Built a legal consultation platform for AlMezan that extended the firm’s client-service model with a structured digital case-posting and lawyer-selection workflow.',
+      problem:
+        'Clients need a clear way to submit legal needs and choose appropriate counsel, while lawyers need a controlled process for evaluating cases and responding with bids.',
+      myRole:
+        'Designed and developed the client case-submission, lawyer-response, bid-selection, notification, meeting-scheduling, and messaging workflows across the Laravel, React, and mobile application stack.',
+      architectureSteps: [
+        'React Web App',
+        'Mobile Interface',
+        'Laravel REST APIs',
+        'Case Distribution',
+        'Lawyer Bids',
+        'Selection & Scheduling',
+      ],
+      solution:
+        'Implemented a reverse-marketplace model: clients post a case, multiple lawyers can bid or decline, the client chooses the preferred bid, and the platform notifies the selected lawyer before scheduling a meeting.',
+      result:
+        'Delivered a structured consultation-intake foundation that supports transparent lawyer selection, clearer case progression, and coordinated follow-up.',
     },
   },
 ]

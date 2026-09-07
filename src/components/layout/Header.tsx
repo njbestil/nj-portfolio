@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { FiDownload } from 'react-icons/fi'
 import logo from '../../assets/images/nj-logo.png'
 import { clsx } from '../../lib/cn'
 import { navigationItems } from '../../lib/constants'
@@ -25,7 +26,7 @@ export function Header({
   return (
     <header
       className={clsx(
-        'fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl transition-colors',
+        'animate__animated animate__fadeInDown animate__faster fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl transition-colors',
         scrolled ? 'border-[#162840] bg-[#07111f]/95' : 'border-transparent bg-[#07111f]/55',
       )}
     >
@@ -73,10 +74,12 @@ export function Header({
         </nav>
         <div className="flex items-center gap-3">
           <a
-            href="#contact"
-            className="focus-ring hidden rounded-md border border-[#4b8ef0] px-4 py-2 font-mono text-xs font-semibold text-[#4b8ef0] transition hover:bg-[#4b8ef0] hover:text-white sm:inline-flex"
+            href="/Bestil_CV.pdf"
+            download
+            className="focus-ring hidden items-center gap-2 rounded-md border border-[#4b8ef0] px-4 py-2 font-mono text-xs font-semibold text-[#4b8ef0] transition hover:bg-[#4b8ef0] hover:text-white sm:inline-flex"
           >
-            ↓&nbsp; Download CV
+            <FiDownload aria-hidden="true" />
+            Download CV
           </a>
           <button
             type="button"

@@ -1,5 +1,8 @@
 import { Badge } from '../../components/ui/Badge'
+import { useAnimateOnVisible } from '../../hooks/useAnimateOnVisible'
+import { clsx } from '../../lib/cn'
 import type { Project } from '../../types/portfolio'
+
 export function ProjectCard({
   title,
   description,
@@ -11,9 +14,15 @@ export function ProjectCard({
   type,
   onView,
 }: Project & { onView: () => void }) {
+  const [animateRef, animateClassName] = useAnimateOnVisible<HTMLElement>('fadeInUp')
+
   return (
     <article
-      className="group flex h-full flex-col overflow-hidden rounded-xl border border-[#162840] bg-[#0d1b2e] transition duration-200 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(0,0,0,.35)]"
+      ref={animateRef}
+      className={clsx(
+        'group flex h-full flex-col overflow-hidden rounded-xl border border-[#162840] bg-[#0d1b2e] transition duration-200 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(0,0,0,.35)]',
+        animateClassName,
+      )}
       style={{ borderColor: `${color}55` }}
     >
       <div

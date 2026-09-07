@@ -12,8 +12,8 @@ export function AiDev() {
       >
         <SectionHeading
           id="ai-dev-heading"
-          eyebrow="05 — AI-Assisted Engineering"
-          title="Building Software with AI"
+          eyebrow="05 — AI Development"
+          title="Building Software with AI-Assisted Engineering"
           description="AI tools are integrated into every stage of development to improve velocity and quality. Human engineering oversight remains responsible for architecture, security, and production readiness."
         />
         <div className="grid gap-6 lg:grid-cols-3">

@@ -55,22 +55,24 @@ export function Home() {
       </div>
       <Container className="grid min-h-[calc(100svh-4rem)] items-center gap-12 py-16 lg:grid-cols-2 lg:gap-16">
         <div className="relative z-10 order-2 flex flex-col gap-5 lg:order-1">
-          <p className="font-mono text-xs tracking-[0.16em] text-[#2dd4f7] sm:text-sm">
+          <p className="animate__animated animate__fadeInLeft animate__fast font-mono text-xs tracking-[0.16em] text-[#2dd4f7] sm:text-sm">
             — Hello, I’m
           </p>
-          <h1 className="max-w-3xl text-5xl font-extrabold leading-[.96] tracking-[-.04em] text-[#dce8f5] sm:text-6xl xl:text-7xl">
+          <h1 className="animate__animated animate__fadeInUp animate__delay-2s max-w-3xl text-5xl font-extrabold leading-[.96] tracking-[-.04em] text-[#dce8f5] sm:text-6xl xl:text-7xl">
             Neil Joseph
             <br />
             <span className="bg-gradient-to-r from-[#4b8ef0] via-[#2dd4f7] to-[#a78bfa] bg-clip-text text-transparent">
               Bestil.
             </span>
           </h1>
-          <p className="inline-flex w-fit rounded-full border border-[#4b8ef0]/25 bg-[#4b8ef0]/10 px-4 py-2 font-mono text-xs font-semibold tracking-[.02em] text-[#4b8ef0] sm:text-sm">
+          <p className="animate__animated animate__fadeInUp animate__delay-3s inline-flex w-fit rounded-full border border-[#4b8ef0]/25 bg-[#4b8ef0]/10 px-4 py-2 font-mono text-xs font-semibold tracking-[.02em] text-[#4b8ef0] sm:text-sm">
             <span className="mr-2 size-1.5 self-center rounded-full bg-[#4b8ef0]" /> Full-Stack
             Developer · 10+ Years
           </p>
-          <p className="max-w-[34rem] text-base leading-7 text-[#6a85a0]">{profile.intro}</p>
-          <div className="flex flex-wrap gap-3">
+          <p className="animate__animated animate__fadeInUp animate__delay-4s max-w-[34rem] text-base leading-7 text-[#6a85a0]">
+            {profile.intro}
+          </p>
+          <div className="animate__animated animate__fadeInUp animate__delay-5s flex flex-wrap gap-3">
             <Button
               href="#projects"
               className="bg-[#4b8ef0] text-white hover:-translate-y-0.5 hover:bg-[#3a7ae0] hover:shadow-[0_10px_28px_rgba(75,142,240,.38)]"
@@ -84,7 +86,7 @@ export function Home() {
               Contact Me
             </Button>
           </div>
-          <div className="flex flex-wrap gap-2 font-mono text-xs text-[#6a85a0]">
+          <div className="animate__animated animate__fadeInUp animate__delay-5s flex flex-wrap gap-2 font-mono text-xs text-[#6a85a0]">
             <span className="rounded-md border border-[#4b8ef0]/20 bg-[#4b8ef0]/[.07] px-3 py-1.5 hover:border-[#2dd4f7] hover:text-[#2dd4f7]">
               React
             </span>
@@ -98,6 +100,9 @@ export function Home() {
               Java
             </span>
             <span className="rounded-md border border-[#4b8ef0]/20 bg-[#4b8ef0]/[.07] px-3 py-1.5 hover:border-[#2dd4f7] hover:text-[#2dd4f7]">
+              Express
+            </span>
+            <span className="rounded-md border border-[#4b8ef0]/20 bg-[#4b8ef0]/[.07] px-3 py-1.5 hover:border-[#2dd4f7] hover:text-[#2dd4f7]">
               PostgreSQL
             </span>
             <span className="rounded-md border border-[#4b8ef0]/20 bg-[#4b8ef0]/[.07] px-3 py-1.5 hover:border-[#2dd4f7] hover:text-[#2dd4f7]">
@@ -105,7 +110,7 @@ export function Home() {
             </span>
           </div>
         </div>
-        <div className="relative order-1 mx-auto grid aspect-square w-full max-w-[31rem] place-items-center lg:order-2 lg:justify-self-end">
+        <div className="animate__animated animate__zoomInRight animate__fast relative order-1 mx-auto grid aspect-square w-full max-w-[31rem] place-items-center lg:order-2 lg:justify-self-end">
           <div
             aria-hidden="true"
             className="hero-spin absolute inset-[4%] rounded-full border border-dashed border-[#4b8ef0]/20"
@@ -149,7 +154,7 @@ export function Home() {
             Available for work
           </span>
           <div className="absolute -left-[8%] bottom-[3%] hidden w-48 rounded-xl border border-[#162840] bg-[#0d1b2e]/95 p-4 font-mono text-[11px] leading-6 text-[#a0b8d0] shadow-[0_12px_40px_rgba(0,0,0,.5)] backdrop-blur-md lg:block">
-            <div className="mb-2 flex gap-1.5">
+            <div className="mb-2 flex items-center gap-1.5">
               <i className="size-2.5 rounded-full bg-[#ff625b]" />
               <i className="size-2.5 rounded-full bg-[#ffcc45]" />
               <i className="size-2.5 rounded-full bg-[#35c95b]" />
@@ -157,9 +162,9 @@ export function Home() {
             </div>
             const njb = {'{'}
             <br />
-            exp: <span className="text-[#ffd8a8]">"10+ yrs"</span>,<br />
-            ai: <span className="text-[#8ec7ff]">true</span>,<br />
-            ship: () =&gt; 🚀
+            &nbsp;&nbsp;exp: <span className="text-[#ffd8a8]">"10+ yrs"</span>,<br />
+            &nbsp;&nbsp;ai: <span className="text-[#8ec7ff]">true</span>,<br />
+            &nbsp;&nbsp;ship: () =&gt; 🚀
             <br />
             {'}'}
           </div>

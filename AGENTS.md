@@ -77,6 +77,7 @@ src/
 │  ├─ ai-dev.ts
 │  └─ certificates.ts
 ├─ hooks/
+│  ├─ useAnimateOnVisible.ts    # Animate.css entrance classes on first visibility
 │  ├─ useActiveSection.ts        # Active navigation state
 │  └─ useScrollToSection.ts      # Accessible smooth scrolling
 ├─ lib/
@@ -134,7 +135,23 @@ className={clsx(
 )}
 ```
 
-## 5. Implementation workflow
+## 5. Element animations
+
+Use [Animate.css](https://animate.style/) for element animations.
+
+- Use Animate.css utility classes for entrance and attention animations instead of custom keyframes when an equivalent animation is available.
+- Keep animation purposeful, subtle, and consistent across sections.
+- Respect reduced-motion preferences and avoid animation that interferes with reading or interaction.
+
+## 6. Icons
+
+Use [React Icons](https://react-icons.github.io/react-icons/) for every implemented icon.
+
+- Import icons from the appropriate React Icons package; do not create custom SVG icon components when an equivalent React Icon is available.
+- Use semantic labels or accessible names for icon-only interactive controls.
+- Keep icon size, color, and alignment consistent with the surrounding Tailwind styles.
+
+## 7. Implementation workflow
 
 For every implementation task:
 

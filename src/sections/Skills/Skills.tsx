@@ -9,10 +9,10 @@ export function Skills() {
       labelledBy="skills-heading"
     >
       <SectionHeading
-        id="skills-heading"
-        eyebrow="02 — Skills"
-        title="Technology Stack"
-        description="Structured engineering skills across frontend, backend, infrastructure, and AI-assisted development."
+          id="skills-heading"
+          eyebrow="02 — Skills"
+          title="Technology Stack"
+          description="Modern full-stack platforms, enterprise integrations, delivery tooling, and AI-assisted development."
       />
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {skillGroups.map((group) => (

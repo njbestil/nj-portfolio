@@ -1,3 +1,6 @@
+import { useAnimateOnVisible } from '../../hooks/useAnimateOnVisible'
+import { clsx } from '../../lib/cn'
+
 export function SectionHeading({
   eyebrow,
   title,
@@ -10,8 +13,13 @@ export function SectionHeading({
   id: string
 }) {
   const [index, label = ''] = eyebrow.split(/\s+[—/]\s+/, 2)
+  const [animateRef, animateClassName] = useAnimateOnVisible<HTMLDivElement>('fadeInUp')
+
   return (
-    <div className="mb-12 max-w-2xl">
+    <div
+      ref={animateRef}
+      className={clsx('mb-12 max-w-2xl', animateClassName)}
+    >
       <p className="mb-3 flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#2dd4f7]">
         <span
           className="h-px w-5 bg-current"

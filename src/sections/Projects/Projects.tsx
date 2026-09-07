@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { FiArrowDown, FiArrowUp, FiExternalLink, FiGithub } from 'react-icons/fi'
 import { Section } from '../../components/layout/Section'
 import { SectionHeading } from '../../components/layout/SectionHeading'
 import { projects } from '../../data/projects'
@@ -6,12 +7,65 @@ import type { Project } from '../../types/portfolio'
 import { ProjectCard } from './ProjectCard'
 export function Projects() {
   const [activeProject, setActiveProject] = useState<Project | null>(null)
+  const [hasScrollableContent, setHasScrollableContent] = useState(false)
+  const [isAtBottom, setIsAtBottom] = useState(false)
   const dialogRef = useRef<HTMLDialogElement>(null)
-  useEffect(() => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const pageScrollPositionRef = useRef({ left: 0, top: 0 })
+
+  useLayoutEffect(() => {
     const dialog = dialogRef.current
-    if (activeProject && dialog && !dialog.open) dialog.showModal()
+    if (!activeProject || !dialog || dialog.open) return
+
+    dialog.showModal()
+    window.scrollTo(pageScrollPositionRef.current.left, pageScrollPositionRef.current.top)
+    const animationFrame = requestAnimationFrame(() => {
+      window.scrollTo(pageScrollPositionRef.current.left, pageScrollPositionRef.current.top)
+    })
+
+    return () => cancelAnimationFrame(animationFrame)
   }, [activeProject])
+
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current
+    if (!scrollContainer || !activeProject) return
+
+    const updateScrollState = () => {
+      const hasOverflow = scrollContainer.scrollHeight > scrollContainer.clientHeight + 1
+      setHasScrollableContent(hasOverflow)
+      setIsAtBottom(
+        hasOverflow &&
+          scrollContainer.scrollTop + scrollContainer.clientHeight >= scrollContainer.scrollHeight - 8,
+      )
+    }
+
+    const resizeObserver = new ResizeObserver(updateScrollState)
+    resizeObserver.observe(scrollContainer)
+    scrollContainer.addEventListener('scroll', updateScrollState, { passive: true })
+    updateScrollState()
+
+    return () => {
+      resizeObserver.disconnect()
+      scrollContainer.removeEventListener('scroll', updateScrollState)
+    }
+  }, [activeProject])
+
   const closeDialog = () => dialogRef.current?.close()
+  const openCaseStudy = (project: Project) => {
+    pageScrollPositionRef.current = { left: window.scrollX, top: window.scrollY }
+    setActiveProject(project)
+  }
+  const scrollCaseStudy = () => {
+    const scrollContainer = scrollContainerRef.current
+    if (!scrollContainer) return
+
+    if (isAtBottom) {
+      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' })
+      return
+    }
+
+    scrollContainer.scrollBy({ top: scrollContainer.clientHeight * 0.8, behavior: 'smooth' })
+  }
   return (
     <>
       <Section
@@ -29,7 +83,7 @@ export function Projects() {
             <ProjectCard
               key={project.title}
               {...project}
-              onView={() => setActiveProject(project)}
+              onView={() => openCaseStudy(project)}
             />
           ))}
         </div>
@@ -39,10 +93,14 @@ export function Projects() {
         aria-labelledby="case-study-title"
         onClose={() => setActiveProject(null)}
         onClick={(event) => event.target === event.currentTarget && closeDialog()}
-        className="modal-shell m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-2xl overflow-y-auto rounded-2xl border border-[#162840] bg-[#0d1b2e] p-0 text-[#dce8f5] backdrop:bg-black/80 backdrop:backdrop-blur-sm"
+        className="animate__animated animate__zoomIn animate__faster modal-shell m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-2xl overflow-hidden rounded-2xl border border-[#162840] bg-[#0d1b2e] p-0 text-[#dce8f5] backdrop:bg-black/80 backdrop:backdrop-blur-sm"
       >
         {activeProject && (
-          <div>
+          <div className="relative max-h-[calc(100dvh-2rem)]">
+            <div
+              ref={scrollContainerRef}
+              className="max-h-[calc(100dvh-2rem)] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
             <div
               className="relative h-48 overflow-hidden sm:h-56"
               style={{ background: activeProject.caseStudy.headerGradient ?? '#0d1b2e' }}
@@ -177,6 +235,31 @@ export function Projects() {
                   <p className="font-semibold text-[#dce8f5]">{activeProject.caseStudy.result}</p>
                 </CaseStudyBlock>
               </div>
+              {activeProject.caseStudy.sourceUrl && (
+                <CaseStudyBlock
+                  label="Source Code"
+                  color={activeProject.color}
+                >
+                  <a
+                    href={activeProject.caseStudy.sourceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-describedby="external-link-hint"
+                    className="focus-ring inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-semibold text-[#dce8f5] transition hover:bg-white/[.06]"
+                    style={{ borderColor: `${activeProject.color}55` }}
+                  >
+                    <FiGithub aria-hidden="true" />
+                    View source on GitHub
+                    <FiExternalLink aria-hidden="true" className="size-3.5" />
+                  </a>
+                  <span
+                    id="external-link-hint"
+                    className="sr-only"
+                  >
+                    Opens in a new tab
+                  </span>
+                </CaseStudyBlock>
+              )}
               <CaseStudyBlock
                 label="Technologies"
                 color={activeProject.color}
@@ -193,6 +276,17 @@ export function Projects() {
                 </div>
               </CaseStudyBlock>
             </div>
+            </div>
+            {hasScrollableContent && (
+              <button
+                type="button"
+                onClick={scrollCaseStudy}
+                className="focus-ring absolute bottom-4 right-4 z-10 grid size-11 place-items-center rounded-full border border-[#2dd4f7]/40 bg-[#07111f]/90 text-[#2dd4f7] shadow-lg shadow-black/30 backdrop-blur transition hover:bg-[#0d2945]"
+                aria-label={isAtBottom ? 'Scroll case study to top' : 'Scroll case study down'}
+              >
+                {isAtBottom ? <FiArrowUp aria-hidden="true" /> : <FiArrowDown aria-hidden="true" />}
+              </button>
+            )}
           </div>
         )}
       </dialog>

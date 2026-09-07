@@ -1,4 +1,6 @@
-import type { FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa6'
+import { HiOutlineEnvelope } from 'react-icons/hi2'
 import { Section } from '../components/layout/Section'
 import { profile, socialLinks } from '../data/profile'
 
@@ -8,8 +10,49 @@ const socialColors: Record<string, string> = {
   Email: '#2dd4f7',
 }
 
+const socialIcons = {
+  LinkedIn: FaLinkedinIn,
+  GitHub: FaGithub,
+  Email: HiOutlineEnvelope,
+}
+
 export function Contact() {
-  const submit = (event: FormEvent<HTMLFormElement>) => event.preventDefault()
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [status, setStatus] = useState('')
+  const formEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT
+
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const form = event.currentTarget
+
+    if (isSubmitting) return
+
+    if (!formEndpoint) {
+      setStatus('The contact form is being configured. Please use the email link to get in touch.')
+      return
+    }
+
+    setIsSubmitting(true)
+    setStatus('')
+
+    try {
+      const response = await fetch(formEndpoint, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      })
+
+      if (!response.ok) throw new Error('Form submission failed')
+
+      form.reset()
+      setStatus('Thanks — your message has been sent. I’ll get back to you soon.')
+    } catch {
+      setStatus('Your message could not be sent. Please try again or use the email link instead.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <Section
       id="contact"
@@ -38,6 +81,7 @@ export function Contact() {
         <form
           className="flex flex-col gap-4"
           onSubmit={submit}
+          aria-busy={isSubmitting}
         >
           <div>
             <label
@@ -93,13 +137,19 @@ export function Contact() {
             type="submit"
             className="focus-ring rounded-lg bg-[#4b8ef0] px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#3a7ae0]"
           >
-            Send Message
+            {isSubmitting ? 'Sending…' : 'Send Message'}
           </button>
+          <p
+            role="status"
+            className="min-h-6 text-sm leading-6 text-[#a0b8d0]"
+          >
+            {status}
+          </p>
         </form>
         <div className="flex flex-col justify-center gap-4">
           {socialLinks.map(({ label, href }) => {
             const color = socialColors[label] ?? '#4b8ef0'
-            const icon = label === 'LinkedIn' ? 'in' : label === 'GitHub' ? 'gh' : '@'
+            const Icon = socialIcons[label as keyof typeof socialIcons] ?? HiOutlineEnvelope
             return (
               <a
                 key={label}
@@ -113,7 +163,7 @@ export function Contact() {
                   style={{ backgroundColor: `${color}15`, borderColor: `${color}30`, color }}
                   aria-hidden="true"
                 >
-                  {icon}
+                  <Icon className="size-5" />
                 </span>
                 <span className="font-medium">{label}</span>
                 <span

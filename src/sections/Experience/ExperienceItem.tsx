@@ -1,6 +1,9 @@
 import { Badge } from '../../components/ui/Badge'
 import { Card } from '../../components/ui/Card'
+import { useAnimateOnVisible } from '../../hooks/useAnimateOnVisible'
+import { clsx } from '../../lib/cn'
 import type { Experience as ExperienceType } from '../../types/portfolio'
+
 export function ExperienceItem({
   period,
   role,
@@ -10,8 +13,13 @@ export function ExperienceItem({
   type,
   color,
 }: ExperienceType) {
+  const [animateRef, animateClassName] = useAnimateOnVisible<HTMLElement>('fadeInLeft')
+
   return (
-    <article className="relative pl-16">
+    <article
+      ref={animateRef}
+      className={clsx('relative pl-16', animateClassName)}
+    >
       <span
         className="absolute left-4 top-7 size-4 -translate-x-1/2 rounded-full border-[3px] border-[#07111f]"
         style={{ backgroundColor: color, boxShadow: `0 0 0 2px ${color}44` }}

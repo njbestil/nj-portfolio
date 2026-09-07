@@ -2,6 +2,8 @@
 @import 'tailwindcss';
 
 :root {
+  --animate-duration: 700ms;
+  --animate-delay: 100ms;
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   color: #f8fafc;
   background: #07111f;

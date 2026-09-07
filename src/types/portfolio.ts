@@ -25,6 +25,7 @@ export type Project = {
 export type CaseStudy = {
   headerPhoto?: string
   headerGradient?: string
+  sourceUrl?: string
   tag: string
   overview: string
   problem: string
@@ -37,10 +38,11 @@ export type Certificate = {
   id: string
   title: string
   issuer: string
+  completedAt: string
   issued: string
   expiry: string
   details: string
   category: string
   color: string
-  pdfUrl?: string
+  pdfUrl: string
 }

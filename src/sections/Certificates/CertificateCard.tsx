@@ -1,4 +1,7 @@
+import { useAnimateOnVisible } from '../../hooks/useAnimateOnVisible'
+import { clsx } from '../../lib/cn'
 import type { Certificate } from '../../types/portfolio'
+
 export function CertificateCard({
   certificate,
   onView,
@@ -7,8 +10,17 @@ export function CertificateCard({
   onView: () => void
 }) {
   const { title, issuer, issued, expiry, details, category, color } = certificate
+  const isExpired = expiry.startsWith('Expired')
+  const [animateRef, animateClassName] = useAnimateOnVisible<HTMLElement>('fadeInUp')
+
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-xl border border-[#162840] bg-[#0d1b2e] transition duration-200 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(0,0,0,.35)]">
+    <article
+      ref={animateRef}
+      className={clsx(
+        'flex h-full flex-col overflow-hidden rounded-xl border border-[#162840] bg-[#0d1b2e] transition duration-200 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(0,0,0,.35)]',
+        animateClassName,
+      )}
+    >
       <div
         className="h-1.5"
         style={{ background: `linear-gradient(to right, ${color}, ${color}66)` }}
@@ -45,7 +57,12 @@ export function CertificateCard({
           <p className="text-xs leading-relaxed text-[#6a85a0]">{details}</p>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="size-1.5 rounded-full bg-[#22d355]" />
+          <span
+            className={clsx(
+              'size-1.5 rounded-full',
+              isExpired ? 'bg-[#fb7185]' : 'bg-[#22d355]',
+            )}
+          />
           <span className="font-mono text-xs text-[#6a85a0]">{expiry}</span>
         </div>
         <button
