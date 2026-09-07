@@ -33,6 +33,9 @@ Always propose this structure first and wait for user approval.
 Use this as the baseline SPA structure:
 
 ```text
+docs/
+└─ images/
+   └─ portfolio-preview.png     # README screenshot
 src/
 ├─ app/
 │  ├─ App.tsx                    # Page composition and section order
