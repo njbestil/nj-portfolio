@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { FiArrowDown, FiArrowUp, FiExternalLink, FiGithub } from 'react-icons/fi'
 import { Section } from '../../components/layout/Section'
 import { SectionHeading } from '../../components/layout/SectionHeading'
+import { Carousel } from '../../components/ui/Carousel'
 import { projects } from '../../data/projects'
 import type { Project } from '../../types/portfolio'
 import { ProjectCard } from './ProjectCard'
@@ -167,6 +168,10 @@ export function Projects() {
                   {activeProject.caseStudy.overview}
                 </p>
               </CaseStudyBlock>
+              <Carousel
+                key={activeProject.id}
+                images={activeProject.caseStudy.screenshots ?? []}
+              />
               <div className="grid gap-6 sm:grid-cols-2">
                 <CaseStudyBlock
                   label="Problem"
