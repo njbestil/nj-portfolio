@@ -74,7 +74,7 @@ export function Header({
         </nav>
         <div className="flex items-center gap-3">
           <a
-            href="/Bestil_CV.pdf"
+            href={`${import.meta.env.BASE_URL}Bestil_CV.pdf`}
             download
             className="focus-ring hidden items-center gap-2 rounded-md border border-[#4b8ef0] px-4 py-2 font-mono text-xs font-semibold text-[#4b8ef0] transition hover:bg-[#4b8ef0] hover:text-white sm:inline-flex"
           >

@@ -1,3 +1,5 @@
+import type { CarouselImage } from '../components/ui/Carousel'
+
 export type SocialLink = { label: string; href: string }
 export type SkillGroup = { title: string; skills: string[]; color: string }
 export type Experience = {
@@ -23,6 +25,7 @@ export type Project = {
   caseStudy: CaseStudy
 }
 export type CaseStudy = {
+  screenshots?: CarouselImage[]
   headerPhoto?: string
   headerGradient?: string
   sourceUrl?: string

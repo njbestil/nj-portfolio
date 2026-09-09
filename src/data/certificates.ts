@@ -1,4 +1,7 @@
 import type { Certificate } from '../types/portfolio'
+
+const certificateBaseUrl = `${import.meta.env.BASE_URL}certs/`
+
 export const certificates: Certificate[] = [
   {
     id: 'learn-express',
@@ -11,7 +14,7 @@ export const certificates: Certificate[] = [
       'Completed a 4-hour, 60-lesson course covering Express.js fundamentals for building Node.js web applications and APIs.',
     category: 'Backend',
     color: '#34d399',
-    pdfUrl: '/certs/Learn%20express.pdf',
+    pdfUrl: `${certificateBaseUrl}Learn%20express.pdf`,
   },
   {
     id: 'advanced-react',
@@ -24,7 +27,7 @@ export const certificates: Certificate[] = [
       'Completed an 18.8-hour, 240-lesson course covering advanced React development patterns.',
     category: 'Frontend',
     color: '#4b8ef0',
-    pdfUrl: '/certs/Advance%20react.pdf',
+    pdfUrl: `${certificateBaseUrl}Advance%20react.pdf`,
   },
   {
     id: 'learn-ai-agents',
@@ -37,7 +40,7 @@ export const certificates: Certificate[] = [
       'Completed a 2-hour, 31-lesson course on building AI agents with large language models.',
     category: 'AI Development',
     color: '#f59e0b',
-    pdfUrl: '/certs/Learn%20ai%20agents.pdf',
+    pdfUrl: `${certificateBaseUrl}Learn%20ai%20agents.pdf`,
   },
   {
     id: 'learn-typescript',
@@ -50,7 +53,7 @@ export const certificates: Certificate[] = [
       'Completed a 4.2-hour, 79-lesson course covering TypeScript fundamentals and type-safe JavaScript development.',
     category: 'Frontend',
     color: '#2dd4f7',
-    pdfUrl: '/certs/Learn%20typescript.pdf',
+    pdfUrl: `${certificateBaseUrl}Learn%20typescript.pdf`,
   },
   {
     id: 'learn-react',
@@ -63,7 +66,7 @@ export const certificates: Certificate[] = [
       'Completed a 15.1-hour, 357-lesson course covering React fundamentals and application development.',
     category: 'Frontend',
     color: '#61dafb',
-    pdfUrl: '/certs/Learn%20react.pdf',
+    pdfUrl: `${certificateBaseUrl}Learn%20react.pdf`,
   },
   {
     id: 'intro-to-vite',
@@ -76,7 +79,7 @@ export const certificates: Certificate[] = [
       'Completed a 19-lesson introduction to Vite and its modern frontend development workflow.',
     category: 'Frontend Tooling',
     color: '#a78bfa',
-    pdfUrl: '/certs/Intro%20to%20vite.pdf',
+    pdfUrl: `${certificateBaseUrl}Intro%20to%20vite.pdf`,
   },
   {
     id: 'oci-foundations-2021',
@@ -89,6 +92,6 @@ export const certificates: Certificate[] = [
       'Oracle Certified Foundations Associate recognition for Oracle Cloud Infrastructure Foundations 2021.',
     category: 'Cloud Infrastructure',
     color: '#f97316',
-    pdfUrl: '/certs/OCI_eCertificate.pdf',
+    pdfUrl: `${certificateBaseUrl}OCI_eCertificate.pdf`,
   },
 ]

@@ -52,6 +52,7 @@ src/
 │  │  ├─ Button.tsx              # Shared CTA variants
 │  │  ├─ Badge.tsx               # Skill and category labels
 │  │  ├─ Card.tsx                # Shared card surface
+│  │  ├─ Carousel.tsx            # Reusable screenshot gallery with captions and manual controls
 │  │  ├─ IconLink.tsx
 │  │  └─ SocialLinks.tsx
 ├─ sections/
@@ -90,6 +91,10 @@ src/
 │  └─ portfolio.ts               # Shared data and prop types
 ├─ assets/
 │  ├─ images/
+│  │  └─ projects/
+│  │     └─ avidhilda/
+│  │        ├─ README.md         # Cover and screenshot import guidance; cover added when supplied
+│  │        └─ screenshots/      # Project screenshots added when supplied
 │  ├─ icons/
 │  └─ documents/
 ├─ styles/
